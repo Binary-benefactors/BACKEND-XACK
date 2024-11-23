@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  torch_inference:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+      - ./yolov11m-face.pt:/app/yolov11m-face.pt
+    working_dir: /app
+    command: cmake --build . && ./TorchInference
+    stdin_open: true
+    tty: true
